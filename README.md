@@ -3,6 +3,8 @@
 
 # 如何使用
 
+`jdk >= 8`
+
 下载已编译好的jar `pt_tracker_edit_0.1.zip`
 
 ```bash
