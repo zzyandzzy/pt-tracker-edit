@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<FlowPane fx:id="rootLayout" fx:controller="xyz.intent.pt.tracker.edit.Controller" alignment="TOP_CENTER"
+          columnHalignment="CENTER"
+          maxHeight="-Infinity" maxWidth="-Infinity"
+          minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="350.0" prefWidth="600.0"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane prefHeight="190.0" prefWidth="500.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="429.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="191.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <TextField fx:id="torrentDirField" disable="true" prefHeight="26.0" prefWidth="345.0">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </TextField>
+        <Button mnemonicParsing="false" onAction="#getTorrentDir" text="种子目录" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#getSaveDir" text="保存目录" GridPane.columnIndex="1"
+                GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <TextField fx:id="saveDirField" disable="true" prefHeight="47.0" prefWidth="349.0"
+                   GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </TextField>
+        <TextField fx:id="oldTrackerField" promptText="原来的tracker server" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </TextField>
+        <TextField fx:id="newTrackerField" promptText="把原来的tracker sercer替换为" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
+        </TextField>
+    </GridPane>
+    <FlowPane orientation="VERTICAL" prefHeight="67.0" prefWidth="475.0">
+        <FlowPane.margin>
+            <Insets left="10.0" right="10.0" top="10.0"/>
+        </FlowPane.margin>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="多tracker server替换策略">
+            <FlowPane.margin>
+                <Insets bottom="5.0" top="5.0"/>
+            </FlowPane.margin>
+        </Text>
+        <ChoiceBox fx:id="trackerListChoiceBox" prefWidth="150.0" value="不替换">
+            <FlowPane.margin>
+                <Insets bottom="5.0" top="5.0"/>
+            </FlowPane.margin>
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="不替换"/>
+                    <String fx:value="删除并添加默认"/>
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+    </FlowPane>
+    <FlowPane alignment="CENTER" prefHeight="44.0" prefWidth="500.0">
+        <Button mnemonicParsing="false" onAction="#ok" text="开始替换！"/>
+    </FlowPane>
+</FlowPane>
