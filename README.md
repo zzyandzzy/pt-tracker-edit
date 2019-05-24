@@ -6,7 +6,7 @@
 下载已编译好的jar `pt_tracker_edit_0.1.zip`
 
 ```bash
-wget 
+wget https://github.com/zzyandzzy/pt-tracker-edit/releases/download/0.1/pt_tracker_edit_0.1.zip
 ```
 
 解压 `pt_tracker_edit_0.1.zip`
