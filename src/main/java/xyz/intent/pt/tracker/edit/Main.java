@@ -1,43 +1,35 @@
 package xyz.intent.pt.tracker.edit;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import xyz.intent.pt.tracker.edit.util.FileUtils;
 import xyz.intent.pt.tracker.edit.util.TorrentUtils;
 
-import java.net.URL;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
-public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        URL url = getClass().getClassLoader().getResource("sample.fxml");
-        if (url != null) {
-            Parent root = FXMLLoader.load(url);
-            primaryStage.setTitle("批量tracker修改器");
-            primaryStage.setScene(new Scene(root, 600, 350));
-            primaryStage.show();
-        } else {
-            Controller.alert("错误", "没有布局文件");
-        }
-    }
-
+public class Main {
+    private static Scanner scanner;
 
     public static void main(String[] args) {
-        launch(args);
-        startCMD();
+        scanner = new Scanner(System.in);
+        System.out.print("选择软件运行模式：\n 0: GUI\n 1: 命令行\n");
+        System.out.print("你的选择：");
+        int mode = scanner.nextInt();
+        switch (mode) {
+            case 0:
+                MainApplication mainApplication = new MainApplication();
+                mainApplication.run();
+                break;
+            case 1:
+                startCMD();
+                break;
+            default:
+                System.out.println("没有该选项");
+        }
     }
 
     private static void startCMD() {
         AtomicInteger count = new AtomicInteger();
         AtomicInteger success = new AtomicInteger();
-        Scanner scanner = new Scanner(System.in);
         System.out.print("请输入种子目录: ");
         String torrentPath = scanner.next();
         System.out.print("请输入旧的Tracker: ");
@@ -47,6 +39,7 @@ public class Main extends Application {
         System.out.print("请输入存储种子的目录: ");
         String savePath = scanner.next();
         System.out.print("选择多Tracker替换方案:\n 0: 只替换第一个Tracker\n 1: 删除全部并添加新的Tracker\n ");
+        System.out.print("你的选择：");
         int policy = scanner.nextInt();
         FileUtils.getTorrentFilePathList(torrentPath).forEach(file -> {
             try {

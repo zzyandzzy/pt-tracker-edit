@@ -8,23 +8,25 @@
 下载已编译好的jar `pt_tracker_edit_0.1.zip`
 
 ```bash
-wget https://github.com/zzyandzzy/pt-tracker-edit/releases/download/0.1/pt_tracker_edit_0.1.zip
+wget https://github.com/zzyandzzy/pt-tracker-edit/releases/download/0.2/tracker-edit-0.2.jar
 ```
 
-解压 `pt_tracker_edit_0.1.zip`
-
+运行 `tracker-edit-0.2.jar`
 ```bash
-unzip pt_tracker_edit_0.1.zip
-```
-
-运行 `pt_tracker_edit.jar`
-```bash
-cd pt_tracker_edit
-java -jar ./pt_tracker_edit.jar
+java -jar ./tracker-edit-0.2.jar
 ```
 
  ![1](https://github.com/zzyandzzy/pt-tracker-edit/raw/master/images/run.png "运行截图")
 
+# 编译
+
+`jdk >= 8`
+
+```bash
+git clone https://github.com/zzyandzzy/pt-tracker-edit.git
+cd pt-tracker-edit
+mvn clean package
+```
 
 License
 ----
