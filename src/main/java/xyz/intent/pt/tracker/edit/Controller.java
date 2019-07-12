@@ -43,9 +43,9 @@ public class Controller {
                 && StringUtils.isNotBlank(saveDirField.getText())
                 && StringUtils.isNotBlank(oldTrackerField.getText())
                 && StringUtils.isNotBlank(newTrackerField.getText())) {
-            if (trackerListChoiceBox.getValue().equals("不替换")) {
+            if (trackerListChoiceBox.getValue().equals("只替换第一个Tracker")) {
                 okPolicy(TorrentUtils.DEFAULT_POLICY);
-            } else if (trackerListChoiceBox.getValue().equals("删除并添加默认")) {
+            } else if (trackerListChoiceBox.getValue().equals("删除全部并添加新的Tracker")) {
                 okPolicy(TorrentUtils.DELETE_POLICY);
             }
         } else {
@@ -60,9 +60,9 @@ public class Controller {
         FileUtils.getTorrentFilePathList(torrentDirField.getText()).forEach(file -> {
             try {
                 count.addAndGet(1);
-                if (TorrentUtils.genTorrent(oldTrackerField.getText().replaceAll("\\s*", ""),
+                if (TorrentUtils.genTorrent(file, oldTrackerField.getText().replaceAll("\\s*", ""),
                         newTrackerField.getText().replaceAll("\\s*", ""),
-                        torrentDirField.getText(), saveDirField.getText(), file.getName(), policy) != null) {
+                        saveDirField.getText(), policy) != null) {
                     success.addAndGet(1);
                 }
             } catch (Exception e) {

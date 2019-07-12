@@ -20,22 +20,20 @@ public class TorrentUtils {
     /**
      * 根据torrent文件替换passkey并生成新的文件
      *
+     * @param file              文件
      * @param oldPasskey        oldPasskey
      * @param passkey           passkey
-     * @param torrentPath       torrent文件目录
      * @param savePath          生成的文件目录
-     * @param fileName          文件名
      * @param trackerListPolicy 替换trackerList策略
      * @return Torrent
      * @throws Exception
      */
-    public static Torrent genTorrent(String oldPasskey, String passkey,
-                                     String torrentPath, String savePath, String fileName,
+    public static Torrent genTorrent(File file, String oldPasskey, String passkey, String savePath,
                                      int trackerListPolicy)
             throws Exception {
         Torrent torrent = new Torrent();
         // 读取文件
-        byte[] torrentData = FileUtils.readFileToByteArray(new File(torrentPath + SEPARATOR + fileName));
+        byte[] torrentData = FileUtils.readFileToByteArray(new File(file.getAbsolutePath()));
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(torrentData);
         BencodeStreamReader bsr = new BencodeStreamReader(byteArrayInputStream);
         byteArrayInputStream.close();
@@ -84,19 +82,19 @@ public class TorrentUtils {
             announceList.add(new BencodedByteSequence(passkey));
         }
         // 判断savePath是否存在
-        File file = new File(savePath);
-        if (!file.exists()) {
-            file.mkdirs();
+        File dir = new File(savePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
         }
         if (save) {
-            try (FileOutputStream fos = new FileOutputStream(savePath + SEPARATOR + fileName)) {
+            try (FileOutputStream fos = new FileOutputStream(savePath + SEPARATOR + file.getName())) {
                 torrentDictionary.writeObject(fos);
             }
-            System.out.println("file: " + fileName + " name: " + torrent.getName() +
+            System.out.println("file: " + file.getName() + " name: " + torrent.getName() +
                     " announce: " + torrent.getAnnounce() + " 替换为 " + announce + " 成功");
             return torrent;
         } else {
-            System.out.println("file: " + fileName + " name: " + torrent.getName() + " 替换失败");
+            System.out.println("file: " + file.getName() + " name: " + torrent.getName() + " 替换失败");
             return null;
         }
     }

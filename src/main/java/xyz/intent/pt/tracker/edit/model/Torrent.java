@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Torrent implements Serializable {
-    private static final long serialVersionUID = 2547665531735463857L;
+    private static final long serialVersionUID = 8814352779387628367L;
     private String announce;
     private List<String> announceList = new ArrayList<>();
     private String name;
