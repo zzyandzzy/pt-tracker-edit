@@ -5,7 +5,7 @@
 
 `jdk >= 8`
 
-下载已编译好的jar `pt_tracker_edit_0.1.zip`
+下载已编译好的jar `tracker_edit_0.2.zip`
 
 ```bash
 wget https://github.com/zzyandzzy/pt-tracker-edit/releases/download/0.2/tracker-edit-0.2.jar
